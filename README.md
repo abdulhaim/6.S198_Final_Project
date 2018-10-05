@@ -6,8 +6,7 @@ The goal of our project is to create a system that will convert video feed of a 
 
 We use a combination of Convolutional Neural Networks and LSTMs to tackle this problem. 
 
-Find dependencies here: 
-
+Find dependencies [here:] (https://docs.google.com/document/d/1NtFzyRzfd4Q186DdbciX0jrTyG6WlmhNEKeaMKJd7DU/edit)
 
 
 
