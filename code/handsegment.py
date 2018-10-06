@@ -17,24 +17,9 @@ def handsegment(frame):
     upper = np.array(upper, dtype="uint8")
     mask2 = cv2.inRange(frame, lower, upper)
 
-    # for i,(lower, upper) in enumerate(boundaries):
-    # 	# create NumPy arrays from the boundaries
-    # 	lower = np.array(lower, dtype = "uint8")
-    # 	upper = np.array(upper, dtype = "uint8")
-
-    # 	# find the colors within the specified boundaries and apply
-    # 	# the mask
-    # 	if(i==0):
-    # 		print "Harish"
-    # 		mask1 = cv2.inRange(frame, lower, upper)
-    # 	else:
-    # 		print "Aadi"
-    # 		mask2 = cv2.inRange(frame, lower, upper)
     mask = cv2.bitwise_or(mask1, mask2)
     output = cv2.bitwise_and(frame, frame, mask=mask)
-    # show the images
-    # cv2.imshow("images", mask)
-    # cv2.imshow("images", output)
+
     return output
 
 if __name__ == '__main__':
