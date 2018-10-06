@@ -45,7 +45,6 @@ def convert_to_frames(dataset):
         for video in videos:
             name = os.path.abspath(video)
             fcount = fcount+1
-            if name i
             print(fcount, " : ", name)
             cap = cv2.VideoCapture(name)  # capturing input video
             frameCount = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
