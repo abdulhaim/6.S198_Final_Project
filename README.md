@@ -6,7 +6,7 @@ The goal of our project is to create a system that will convert video feed of a 
 
 We use a combination of Convolutional Neural Networks and LSTMs to tackle this problem. 
 
-## Getting Started:
+## Getting Started
 To install the dependencies for this project, run the following commands: 
 
 ``pip install opencv-python``
@@ -21,6 +21,8 @@ To install the dependencies for this project, run the following commands:
 
 ``pip install numpy``
 
+## Pipeline
+
 In order to run this module, please clone the repository and perform the following
 1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M) and place into newly created folder called "test" in the project's code directory.
 
@@ -33,12 +35,4 @@ In order to run this module, please clone the repository and perform the followi
 Run the following command:
 
 ``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &``
-
-
-
-
-
-
-
-
 
