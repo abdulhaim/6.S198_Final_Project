@@ -2,7 +2,7 @@ import cv2
 import os
 import pickle
 from os.path import join, exists
-import handsegment as hs
+import segment_hand as hs
 
 def convert_to_frames(dataset):
     """
