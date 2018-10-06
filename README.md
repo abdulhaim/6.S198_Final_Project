@@ -6,24 +6,33 @@ The goal of our project is to create a system that will convert video feed of a 
 
 We use a combination of Convolutional Neural Networks and LSTMs to tackle this problem. 
 
-Find dependencies [here](https://docs.google.com/document/d/1NtFzyRzfd4Q186DdbciX0jrTyG6WlmhNEKeaMKJd7DU/edit)
+## Getting Started
+To install the dependencies for this project, run the following commands: 
+
+``pip install opencv-python``
+
+``pip install "tensorflow>=1.7.0``
+
+``pip install tensorflow-hub``
+
+``pip install tflearn``
+
+``pip install pickle``
+
+``pip install numpy``
+
+## Pipeline
 
 In order to run this module, please clone the repository and perform the following
-1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M): and place into newly created folder called "test" in the project's code directory.
-2. Run "sort_files.py". This will arrange all of the raw data into folders corresponding to each word category. Please change the appropriate paths in the file. 
-3. Run "video_to_frame.py". This will capture 200 frames for each raw video as images and store them in the appropriate folder.
-4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py). Note: This link may change in the future. 
+1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M) and place into newly created folder called "test" in the project's code directory.
+
+2. Run ``python sort_files.py``. This will arrange all of the raw data into folders corresponding to each word category. Please change the appropriate paths in the file. 
+
+3. Run python ``python video_to_frame.py``. This will capture 200 frames for each raw video as images and store them in the appropriate folder. Note that the size of the data will now be 24 GB.
+
+4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
 
 Run the following command:
-nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &
 
-
-
-
-
-
-
-
-
-
+``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &``
 
