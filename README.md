@@ -22,19 +22,17 @@ To install the dependencies for this project, run the following commands:
 ``pip install numpy``
 
 In order to run this module, please clone the repository and perform the following
-1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M): and place into newly created folder called "test" in the project's code directory.
+1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M) and place into newly created folder called "test" in the project's code directory.
 
 2. Run ``python sort_files.py``. This will arrange all of the raw data into folders corresponding to each word category. Please change the appropriate paths in the file. 
 
-3. Run python ``python video_to_frame.py``. This will capture 200 frames for each raw video as images and store them in the appropriate folder.
+3. Run python ``python video_to_frame.py``. This will capture 200 frames for each raw video as images and store them in the appropriate folder. Note that the size of the data will now be 24 GB.
 
-4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py). Note: This link may change in the future. 
+4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
 
 Run the following command:
 
 ``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &``
-
-
 
 
 
