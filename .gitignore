@@ -1,0 +1,6 @@
+# ignore data files
+
+code/data
+code/majorData
+code/bottlenecks
+code/nohup.out
