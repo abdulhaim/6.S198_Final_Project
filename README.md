@@ -10,10 +10,15 @@ We use a combination of Convolutional Neural Networks and LSTMs to tackle this p
 To install the dependencies for this project, run the following commands: 
 
 ``pip install opencv-python``
+
 ``pip install "tensorflow>=1.7.0``
+
 ``pip install tensorflow-hub``
+
 ``pip install tflearn``
+
 ``pip install pickle``
+
 ``pip install numpy``
 
 In order to run this module, please clone the repository and perform the following
