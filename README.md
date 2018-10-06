@@ -18,6 +18,7 @@ In order to run this module, please clone the repository and perform the followi
 4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py). Note: This link may change in the future. 
 
 Run the following command:
+
 ``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &``
 
 
