@@ -6,7 +6,15 @@ The goal of our project is to create a system that will convert video feed of a 
 
 We use a combination of Convolutional Neural Networks and LSTMs to tackle this problem. 
 
-Find dependencies [here](https://docs.google.com/document/d/1NtFzyRzfd4Q186DdbciX0jrTyG6WlmhNEKeaMKJd7DU/edit)
+## Getting Started:
+To install the dependencies for this project, run the following commands: 
+
+``pip install opencv-python``
+``pip install "tensorflow>=1.7.0``
+``pip install tensorflow-hub``
+``pip install tflearn``
+``pip install pickle``
+``pip install numpy``
 
 In order to run this module, please clone the repository and perform the following
 1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M): and place into newly created folder called "test" in the project's code directory.
