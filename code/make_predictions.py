@@ -10,7 +10,7 @@ def get_labels():
     format of one label per line, in the same order
     as the predictions are made. The order can change
     between training runs."""
-    with open("retrained_labels.txt", 'r') as fin:
+    with open("tmp/retrained_labels.txt", 'r') as fin:
         labels = [line.rstrip('\n') for line in fin]
     return labels
 
@@ -18,7 +18,7 @@ def get_labels():
 def predict_on_frames(frames, batch):
     """Given a list of frames, predict all their classes."""
     # Unpersists graph from file
-    with tf.gfile.FastGFile("retrained_graph.pb", 'rb') as fin:
+    with tf.gfile.FastGFile("tmp/retrained_graph.pb", 'rb') as fin:
         graph_def = tf.GraphDef()
         graph_def.ParseFromString(fin.read())
         _ = tf.import_graph_def(graph_def, name='')
@@ -41,20 +41,12 @@ def predict_on_frames(frames, batch):
             # Read in the image_data
             image_data = tf.gfile.FastGFile(image, 'rb').read()
 
-            try:
-                predictions = sess.run(
+            predictions = sess.run(
                     softmax_tensor,
-                    {'DecodeJpeg/contents:0': image_data}
-                )
-                prediction = predictions[0]
+                    {'Placeholder:0': image_data})
+            prediction = predictions[0]
                 # print prediction
-            except KeyboardInterrupt:
-                print("You quit with ctrl+c")
-                sys.exit()
-            except:
-                print("Error making prediction, continuing.")
-                continue
-
+          
             # Save the probability that it's each of our classes.
             frame_predictions.append([prediction, label, frameCount])
 
