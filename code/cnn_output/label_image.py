@@ -69,12 +69,11 @@ def load_labels(label_file):
   proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
   for l in proto_as_ascii_lines:
     label.append(l.rstrip())
-  print("Label", label)
+  #print("Label", label)
   return label
 
 
 if __name__ == "__main__":
-  print("beggining of main")
   file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
   model_file = \
     "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
@@ -116,7 +115,6 @@ if __name__ == "__main__":
     input_layer = args.input_layer
   if args.output_layer:
     output_layer = args.output_layer
-  print("file name",file_name)
   graph = load_graph(model_file)
   t = read_tensor_from_image_file(
       file_name,
@@ -134,13 +132,14 @@ if __name__ == "__main__":
     results = sess.run(output_operation.outputs[0], {
         input_operation.outputs[0]: t
     })
+  
   results = np.squeeze(results)
 
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
   for i in top_k:
     print(labels[i], results[i])
-
+  print("--------------------------------------------------")
 
 def main():
     with open('data/labeled-frames-' + batch + '.pkl', 'rb') as fin:
@@ -151,7 +150,7 @@ def main():
     # Predict on this batch and get the accuracy.
     predictions = predict_on_frames(frames, batch)
     for frame in predictions:
-        print frame
+        print(frame)
     accuracy = get_accuracy(predictions, labels)
     print("Batch accuracy: %.5f" % accuracy)
 
