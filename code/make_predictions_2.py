@@ -46,7 +46,7 @@ def get_accuracy(predictions, labels):
     return accuracy
 
 def main():
-    with open('data/labeled-frames' + '.pkl', 'rb') as fin:
+    with open('data/labeled-frames-1' + '.pkl', 'rb') as fin:
         frames = pickle.load(fin)
 
     predictions = predict_on_frames(frames, batch)
