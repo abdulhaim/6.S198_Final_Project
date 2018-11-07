@@ -73,7 +73,7 @@ def load_labels(label_file):
   return label
 
 
-def main(filename):
+def main(file_name):
   model_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_graph.pb"
   label_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_labels.txt"
   input_height = 299
