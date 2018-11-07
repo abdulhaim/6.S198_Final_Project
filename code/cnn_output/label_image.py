@@ -133,7 +133,7 @@ def main():
         input_operation.outputs[0]: t
     })
   
-  return results
+  return results[0]
   # results = np.squeeze(results)
 
   # top_k = results.argsort()[-5:][::-1]
