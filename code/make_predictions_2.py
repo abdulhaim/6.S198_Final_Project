@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 def predict_on_frames(frames):
     frame_predictions = []
-
+    print(len(frames))
     for i, frame in enumerate(frames):
         filename = frame[0]
         label = frame[1]
@@ -18,7 +18,8 @@ def predict_on_frames(frames):
         prediction = label_image.main(filename)
 
         frame_predictions.append([prediction, label, frameCount])
-        print(i)
+        if(i%200 == 0):
+            print(i)
     return frame_predictions
 
 def get_accuracy(predictions, labels):
