@@ -73,7 +73,7 @@ def load_labels(label_file):
   return label
 
 
-if __name__ == "__main__":
+def main():
   file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
   model_file = \
     "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
@@ -133,27 +133,14 @@ if __name__ == "__main__":
         input_operation.outputs[0]: t
     })
   
-  results = np.squeeze(results)
+  return results
+  # results = np.squeeze(results)
 
-  top_k = results.argsort()[-5:][::-1]
-  labels = load_labels(label_file)
-  for i in top_k:
-    print(labels[i], results[i])
-  print("--------------------------------------------------")
+  # top_k = results.argsort()[-5:][::-1]
+  # labels = load_labels(label_file)
+  # for i in top_k:
+  #   print(labels[i], results[i])
+  # print("--------------------------------------------------")
 
-def main():
-    with open('data/labeled-frames-' + batch + '.pkl', 'rb') as fin:
-        frames = pickle.load(fin)
-
-    # for frame in frames:
-    #     print frame
-    # Predict on this batch and get the accuracy.
-    predictions = predict_on_frames(frames, batch)
-    for frame in predictions:
-        print(frame)
-    accuracy = get_accuracy(predictions, labels)
-    print("Batch accuracy: %.5f" % accuracy)
-
-    # Save it.
-    with open('data/predicted-frames-' + batch + '.pkl', 'wb') as fout:
-        pickle.dump(predictions, fout)
+if __name__ == "__main__":
+  main()
