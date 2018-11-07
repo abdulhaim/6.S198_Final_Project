@@ -73,7 +73,7 @@ def load_labels(label_file):
   return label
 
 
- def main(filename):
+def main(filename):
   file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
   model_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_graph.pb"
   label_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_labels.txt"
