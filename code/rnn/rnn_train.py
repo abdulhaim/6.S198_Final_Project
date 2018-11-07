@@ -43,7 +43,7 @@ def main(filename, frames, batch_size, num_classes, input_length):
 if __name__ == '__main__':
     # filename = 'data/cnn-features-frames-1.pkl'
     # input_length = 2048
-    filename = 'data/predicted-frames-1.pkl'
+    filename = 'data/predicted-frames.pkl'
     input_length = 64
     frames = 201
     batch_size = 32
