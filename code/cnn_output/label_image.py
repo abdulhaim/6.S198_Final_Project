@@ -73,7 +73,7 @@ def load_labels(label_file):
   return label
 
 
-def main():
+if __name__ == "__main__":
   file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
   model_file = \
     "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
@@ -133,14 +133,13 @@ def main():
         input_operation.outputs[0]: t
     })
   
-  return results[0]
-  # results = np.squeeze(results)
+  results = np.squeeze(results)
+  return results
 
-  # top_k = results.argsort()[-5:][::-1]
-  # labels = load_labels(label_file)
-  # for i in top_k:
-  #   print(labels[i], results[i])
-  # print("--------------------------------------------------")
+  top_k = results.argsort()[-5:][::-1]
+  labels = load_labels(label_file)
+  for i in top_k:
+    print(labels[i], results[i])
+  print("--------------------------------------------------")
 
-if __name__ == "__main__":
-  main()
+
