@@ -1,4 +1,4 @@
-import cnn_output.label_image 
+import label_image 
 
 def predict_on_frames():
     frame_predictions = []
