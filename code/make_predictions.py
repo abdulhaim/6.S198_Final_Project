@@ -1,62 +1,30 @@
-import pickle
-import sys
+import label_image 
+import pickle 
 import tensorflow as tf
+import sys
 from tqdm import tqdm
 
 
-def get_labels():
-    """Return a list of our trained labels so we can
-    test our training accuracy. The file is in the
-    format of one label per line, in the same order
-    as the predictions are made. The order can change
-    between training runs."""
-    with open("tmp/retrained_labels.txt", 'r') as fin:
-        labels = [line.rstrip('\n') for line in fin]
-    return labels
+def predict_on_frames(frames):
+    frame_predictions = []
+    
+    print(len(frames))
 
+    for i, frame in enumerate(frames):
+        filename = frame[0]
+        label = frame[1]
+        frameCount = frame[2]
 
-def predict_on_frames(frames, batch):
-    """Given a list of frames, predict all their classes."""
-    # Unpersists graph from file
-    with tf.gfile.FastGFile("tmp/retrained_graph.pb", 'rb') as fin:
-        graph_def = tf.GraphDef()
-        graph_def.ParseFromString(fin.read())
-        _ = tf.import_graph_def(graph_def, name='')
+        image = frame[0]
 
-    with tf.Session() as sess:
-        softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+        prediction = label_image.get_prediction(filename)
 
-        frame_predictions = []
-        # image_path = 'images/' + batch + '/'
-        pbar = tqdm(total=len(frames))
-        for i, frame in enumerate(frames):
-            filename = frame[0]
-            label = frame[1]
-            frameCount = frame[2]
+        frame_predictions.append([prediction, label, frameCount])
 
-            # Get the image path.
-            image = frame[0]
-            # print image
+        if(i%200 == 0):
+            print("Iteration", i)
 
-            # Read in the image_data
-            image_data = tf.gfile.FastGFile(image, 'rb').read()
-
-            predictions = sess.run(
-                    softmax_tensor,
-                    {'Placeholder:0': image_data})
-            prediction = predictions[0]
-                # print prediction
-          
-            # Save the probability that it's each of our classes.
-            frame_predictions.append([prediction, label, frameCount])
-
-            if i > 0 and i % 10 == 0:
-                pbar.update(10)
-
-        pbar.close()
-
-        return frame_predictions
-
+    return frame_predictions
 
 def get_accuracy(predictions, labels):
     """After predicting on each batch, check that batch's
@@ -78,52 +46,29 @@ def get_accuracy(predictions, labels):
         # print predicted_label
 
         # Now see if it matches.
-        print predicted_label, this_label
+        print(predicted_label, this_label)
         if predicted_label.lower() == this_label.lower():
             correct += 1
-        print correct, len(predictions)
+        print(correct, len(predictions))
 
-    print correct, len(predictions)
+    print(correct, len(predictions))
     accuracy = correct / float(len(predictions))
     return accuracy
 
-
 def main():
-    labels = get_labels()
-    # print labels
-    batch = '1'
-    # batch = '2'
-
-    with open('data/labeled-frames-' + batch + '.pkl', 'rb') as fin:
+    with open('data/labeled-frames-1' + '.pkl', 'rb') as fin:
         frames = pickle.load(fin)
 
-    # for frame in frames:
-    #     print frame
-    # Predict on this batch and get the accuracy.
-    predictions = predict_on_frames(frames, batch)
+    predictions = predict_on_frames(frames)
     for frame in predictions:
-        print frame
+        print(frame)
     accuracy = get_accuracy(predictions, labels)
     print("Batch accuracy: %.5f" % accuracy)
 
     # Save it.
-    with open('data/predicted-frames-' + batch + '.pkl', 'wb') as fout:
+    with open('data/predicted-frames' + '.pkl', 'wb') as fout:
         pickle.dump(predictions, fout)
 
-    # for batch in batches:
-    #     print("Doing batch %s" % batch)
-    #     with open('data/labeled-frames-' + batch + '.pkl', 'rb') as fin:
-    #         frames = pickle.load(fin)
 
-    #     # Predict on this batch and get the accuracy.
-    #     predictions = predict_on_frames(frames, batch)
-    #     accuracy = get_accuracy(predictions, labels)
-    #     print("Batch accuracy: %.5f" % accuracy)
-
-    #     # Save it.
-    #     with open('data/predicted-frames-' + batch + '.pkl', 'wb') as fout:
-    #         pickle.dump(predictions, fout)
-    print("Done.")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
