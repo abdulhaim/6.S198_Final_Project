@@ -108,6 +108,6 @@ def main(file_name):
   for i in top_k:
     print(labels[i], results[i])
   print("--------------------------------------------------")
-  return results
+  return results[0]
 
 
