@@ -36,17 +36,17 @@ def get_accuracy(predictions, labels):
         # print predicted_label
 
         # Now see if it matches.
-        print predicted_label, this_label
+        print(predicted_label, this_label)
         if predicted_label.lower() == this_label.lower():
             correct += 1
         print correct, len(predictions)
 
-    print correct, len(predictions)
+    print(correct, len(predictions))
     accuracy = correct / float(len(predictions))
     return accuracy
 
 def main():
-    with open('data/labeled-frames-' + batch + '.pkl', 'rb') as fin:
+    with open('data/labeled-frames' + '.pkl', 'rb') as fin:
         frames = pickle.load(fin)
 
     predictions = predict_on_frames(frames, batch)
