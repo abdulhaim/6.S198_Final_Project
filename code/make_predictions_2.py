@@ -18,7 +18,7 @@ def predict_on_frames(frames):
         prediction = label_image.main(filename)
 
         frame_predictions.append([prediction, label, frameCount])
-
+        print(i)
     return frame_predictions
 
 def get_accuracy(predictions, labels):
@@ -44,7 +44,7 @@ def get_accuracy(predictions, labels):
         print(predicted_label, this_label)
         if predicted_label.lower() == this_label.lower():
             correct += 1
-        print correct, len(predictions)
+        print(correct, len(predictions))
 
     print(correct, len(predictions))
     accuracy = correct / float(len(predictions))
