@@ -1,8 +1,21 @@
+import label_image 
+
 def predict_on_frames():
+    frame_predictions = []
+
     for i, frame in enumerate(frames):
         filename = frame[0]
         label = frame[1]
         frameCount = frame[2]
+
+        image = frame[0]
+
+        prediction = label_image.main(filename)
+
+        frame_predictions.append([prediction, label, frameCount])
+
+    return frame_predictions
+
 
 
 def main():
