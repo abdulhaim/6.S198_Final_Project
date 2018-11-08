@@ -34,7 +34,7 @@ In order to run this module, please clone the repository and perform the followi
 
 Run the following command:
 
-``nohup python retrain.py --bottleneck_dir=bottlenecks --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=image_data --tfhub_module https://tfhub.dev/google/imagenet/mobilenet_v1_100_224/feature_vector/1 &``
+``nohup python retrain.py --bottleneck_dir=bottlenecks --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=preprocessing/image_data --tfhub_module https://tfhub.dev/google/imagenet/mobilenet_v1_100_224/feature_vector/1 &``
 
 5. We will now run a command that will create a pickle file to feed into the LSTM model that includes the accuracy values for reach word in a matrix. 
 
