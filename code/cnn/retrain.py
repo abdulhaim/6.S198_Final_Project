@@ -16,7 +16,7 @@
 # and modified to use TensorFlow Hub modules.
 
 # pylint: disable=line-too-long
-r"""Simple transfer learning with image modules from TensorFlow Hub.
+"""Simple transfer learning with image modules from TensorFlow Hub.
 
 This example shows how to train an image classifier based on any
 TensorFlow Hub module that computes image feature vectors. By default,
