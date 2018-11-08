@@ -30,7 +30,7 @@ In order to run this module, please clone the repository and perform the followi
 
 3. Run python ``python video_to_frame.py``. This will split your dataset into a training and a test set (70:30 ratio), and capture 200 frames for each rraw video in the training set as images and store them in the appropriate folder. Note that can you can specify how many words to include in your training set.
 
-4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Mobilenet model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
+4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Mobilenet model. Download ``retrain.py`` [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
 
 Run the following command:
 
