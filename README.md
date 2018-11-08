@@ -28,11 +28,15 @@ In order to run this module, please clone the repository and perform the followi
 
 2. Run ``python sort_files.py``. This will arrange all of the raw data into folders corresponding to each word category. Please change the appropriate paths in the file. 
 
-3. Run python ``python video_to_frame.py``. This will capture 200 frames for each raw video as images and store them in the appropriate folder. Note that the size of the data will now be 24 GB.
+3. Run python ``python video_to_frame.py``. This will split your dataset into a training and a test set (70:30 ratio), and capture 200 frames for each rraw video in the training set as images and store them in the appropriate folder. Note that can you can specify how many words to include in your training set.
 
-4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
+4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Mobilenet model. Download "retrain.py" [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
 
 Run the following command:
 
-``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData &``
+``nohup python retrain.py --bottleneck_dir=bottlenecks --model_dir=inception --summaries_dir=training_summaries/long --output_graph=retrained_graph.pb --output_labels=retrained_labels.txt --image_dir=majorData --tfhub_module https://tfhub.dev/google/imagenet/mobilenet_v1_100_224/feature_vector/1 &``
+
+5. We will now run a command that will create a pickle file to feed into the LSTM model that includes the accuracy values for reach word in a matrix. 
+
+`` python make_predictions.py ``
 
