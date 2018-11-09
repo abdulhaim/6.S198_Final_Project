@@ -144,10 +144,10 @@ def convert_to_frames(dataset,word_count):
 
     os.chdir(rootPath)
     with open('pickle_data/labeled-frames-2.pkl', 'wb') as handle:
-        pickle.dump(pickle_file, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(pickle_file, handle, protocol=2)
 
 if __name__ == '__main__':
-    split_test_train("raw_data/")
+    #split_test_train("raw_data/")
     word_count = 10
     convert_to_frames("raw_data/",word_count)
 
