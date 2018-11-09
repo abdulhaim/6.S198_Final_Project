@@ -74,10 +74,10 @@ def load_labels(label_file):
 
 
 def get_prediction(file_name):
-  model_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_graph.pb"
-  label_file = "/home/abdulhai/6.S198_Final_Project/code/tmp/retrained_labels.txt"
-  input_height = 299
-  input_width = 299
+  model_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_graph.pb"
+  label_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_labels.txt"
+  input_height = 224
+  input_width = 224
   input_mean = 0
   input_std = 255
   input_layer = "Placeholder"

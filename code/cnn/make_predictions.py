@@ -3,13 +3,14 @@ import pickle
 import tensorflow as tf
 import sys
 from tqdm import tqdm
-
+import datetime
 
 def predict_on_frames(frames):
     frame_predictions = []
     
     print(len(frames))
-
+    prev_time = datetime.datetime.now().replace(microsecond=0)
+    count = 0
     for i, frame in enumerate(frames):
         filename = frame[0]
         label = frame[1]
@@ -18,12 +19,15 @@ def predict_on_frames(frames):
         image = frame[0]
 
         prediction = label_image.get_prediction(filename)
+	frame_predictions.append([prediction, label, frameCount])
 
-        frame_predictions.append([prediction, label, frameCount])
-
-        if(i%200 == 0):
-            print("Iteration", i)
-
+        if(count%200==0):
+            print("Frame Count", count)
+            print("Time Diff:", (datetime.datetime.now().replace(microsecond=0)-prev_time))
+	    prev_time = datetime.datetime.now().replace(microsecond=0)
+	
+	count+=1
+    
     return frame_predictions
 
 def get_accuracy(predictions, labels):
@@ -56,9 +60,9 @@ def get_accuracy(predictions, labels):
     return accuracy
 
 def main():
-    with open('data/labeled-frames-1' + '.pkl', 'rb') as fin:
+    print("Beggining of Program")
+    with open('preprocessing/pickle_data/labeled-frames-2' + '.pkl', 'rb') as fin:
         frames = pickle.load(fin)
-
     predictions = predict_on_frames(frames)
     for frame in predictions:
         print(frame)
@@ -66,7 +70,7 @@ def main():
     print("Batch accuracy: %.5f" % accuracy)
 
     # Save it.
-    with open('data/predicted-frames' + '.pkl', 'wb') as fout:
+    with open('data/predicted-frames-2' + '.pkl', 'wb') as fout:
         pickle.dump(predictions, fout)
 
 
