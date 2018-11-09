@@ -1,7 +1,7 @@
 import sys
 import pickle
 """Viewing Contents of Pickle File"""
-x = pickle.load(open("data/labeled-frames-1.pkl"))
+x = pickle.load(open("pickle_data/labeled-frames-2.pkl"))
 
 print("Length of file: {:,}".format(len(x)))
 print("Enter y to view number of files for each word and n to exit")

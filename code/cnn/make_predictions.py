@@ -19,14 +19,14 @@ def predict_on_frames(frames):
         image = frame[0]
 
         prediction = label_image.get_prediction(filename)
-	frame_predictions.append([prediction, label, frameCount])
+        frame_predictions.append([prediction, label, frameCount])
 
         if(count%200==0):
             print("Frame Count", count)
             print("Time Diff:", (datetime.datetime.now().replace(microsecond=0)-prev_time))
-	    prev_time = datetime.datetime.now().replace(microsecond=0)
+            prev_time = datetime.datetime.now().replace(microsecond=0)
 	
-	count+=1
+	   count+=1
     
     return frame_predictions
 
