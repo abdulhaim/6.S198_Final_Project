@@ -1,24 +1,10 @@
-# Copyright 2017 The TensorFlow Authors. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
+# Code modified from Tensorflow Authors 2017 for use of Sign Language Interpreter Project 
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 import argparse
-
 import numpy as np
 import tensorflow as tf
 
@@ -28,9 +14,9 @@ def load_graph(model_file):
   graph_def = tf.GraphDef()
 
   with open(model_file, "rb") as f:
-    graph_def.ParseFromString(f.read())
+ 	 graph_def.ParseFromString(f.read())
   with graph.as_default():
-    tf.import_graph_def(graph_def)
+  	tf.import_graph_def(graph_def)
 
   return graph
 
@@ -69,13 +55,13 @@ def load_labels(label_file):
   proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
   for l in proto_as_ascii_lines:
     label.append(l.rstrip())
-  #print("Label", label)
+ 
   return label
 
 
 def get_prediction(file_name):
-  model_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_graph.pb"
-  label_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_labels.txt"
+  model_file = "/home/abdulhai/6.S198_Final_Project/code/models/retrained_graph.pb"
+  label_file = "/home/abdulhai/6.S198_Final_Project/code/models/retrained_labels.txt"
   input_height = 224
   input_width = 224
   input_mean = 0
@@ -105,9 +91,5 @@ def get_prediction(file_name):
 
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
-  #for i in top_k:
-  #	print(labels[i], results[i])
   return results
-
-
 
