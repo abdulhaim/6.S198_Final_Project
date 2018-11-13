@@ -4,7 +4,7 @@ train an RNN (LSTM) to examine temporal dependencies.
 """
 from rnn_utils import get_network, get_network_deep, get_network_wide, get_data
 import tflearn
-
+import os
 
 def main(filename, frames, batch_size, num_classes, input_length):
     """From the blog post linked above."""
@@ -29,13 +29,14 @@ def main(filename, frames, batch_size, num_classes, input_length):
         print "Model Loaded"
     else:
         model = tflearn.DNN(net, tensorboard_verbose=0)
-    
+   
+    print("Fitting Model") 
     model.fit(X_train, y_train, validation_set=(X_test, y_test),
               show_metric=True, batch_size=batch_size, snapshot_step=100,
               n_epoch=10)
 
     # Save it.
-    print "Do you wanna save the model and overwrite? y or n"
+    print("Do you wanna save the model and overwrite? y or n")
     x = raw_input()
     if(x == "y"):
         model.save('checkpoints/rnn.tflearn')
@@ -43,10 +44,10 @@ def main(filename, frames, batch_size, num_classes, input_length):
 if __name__ == '__main__':
     # filename = 'data/cnn-features-frames-1.pkl'
     # input_length = 2048
-    filename = 'data/predicted-frames.pkl'
-    input_length = 64
-    frames = 201
+    filename = 'predicted-frames-2.pkl'
+    input_length = 10 #64
+    frames = 15 #201
     batch_size = 32
-    num_classes = 64
+    num_classes = 10 #64
 
     main(filename, frames, batch_size, num_classes, input_length)

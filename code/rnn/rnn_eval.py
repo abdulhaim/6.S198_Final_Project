@@ -24,8 +24,8 @@ def main(filename, frames, batch_size, num_classes, input_length):
 
     # Get our model.
     model = tflearn.DNN(net, tensorboard_verbose=0)
-    # model.load('checkpoints/rnn.tflearn')
-    model.load('checkpoints_backup/rnn.tflearn')
+    model.load('checkpoints/rnn.tflearn')
+    #model.load('checkpoints_backup/rnn.tflearn')
 
     # Evaluate.
     hc = model.predict(X_train)
@@ -44,15 +44,15 @@ def main(filename, frames, batch_size, num_classes, input_length):
         print x[0], x[1]
         f.write(str(x[0])+" "+str(x[1])+"\n")
 
-    print(model.evaluate(X_train, y_train))
+    print("Evaluation of model:", model.evaluate(X_train, y_train))
 
 if __name__ == '__main__':
-    filename = 'data/predicted-frames-2.pkl'
-    input_length = 64
-    # filename = 'data/cnn-features-frames-2.pkl'
+    filename = 'predicted-frames-2.pkl'
+    input_length = 10 #64
+    #filename = 'data/cnn-features-frames-2.pkl'
     # input_length = 2048
-    frames = 201
+    frames = 15 #201
     batch_size = 32
-    num_classes = 64
+    num_classes = 10 #64
 
     main(filename, frames, batch_size, num_classes, input_length)
