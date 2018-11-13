@@ -105,8 +105,9 @@ def get_prediction(file_name):
 
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
-  # for i in top_k:
-  #   print(labels[i], results[i])
-  return results[0]
+  #for i in top_k:
+  #	print(labels[i], results[i])
+  return results
+
 
 
