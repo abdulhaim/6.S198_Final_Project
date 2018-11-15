@@ -22,13 +22,13 @@ def predict_on_frames(frames):
         label = frame[1]
         frameCount = frame[2]
 
-		if(count%200 == 0):
-			print(count)
+        if(count%200 == 0):
+            print(count)
         
-		prediction = label_image.get_prediction(filename)
+        prediction = label_image.get_prediction(filename)
         
-		frame_predictions.append([prediction, label, frameCount])
-    	count = count + 1
+        frame_predictions.append([prediction, label, frameCount])
+        count = count + 1
 
     return frame_predictions
 
@@ -52,10 +52,10 @@ def main(input_file_name,output_file_name,video_length):
     final_dict = dict()
     for element in sorted_frames:
         for f in element:
-		name = f[0]
+        name = f[0]
         video_name = name[name.rindex("/")+1:name.rindex("frame")-1]
         if video_name not in final_dict:
-        	final_dict[video_name] = []
+            final_dict[video_name] = []
 
         final_dict[video_name].append(f)
 
