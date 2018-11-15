@@ -32,13 +32,13 @@ def main_rnn(filename, frames, batch_size, num_classes, input_length):
     answer = []
 
     for i in range(0, len(hc)):
-	 answer.append([aadi[i], hc[i]])
+        answer.append([aadi[i], hc[i]])
 
     answer.sort()
     f = open("results_demo/results.txt", "wb")
     for x in answer:
         print(x[0], x[1])
-    	f.write(str(x[0])+" "+str(x[1])+"\n")
+        f.write(str(x[0])+" "+str(x[1])+"\n")
 
     print("Evaluation of model:", model.evaluate(X_train, y_train))
 
