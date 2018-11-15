@@ -14,7 +14,7 @@ def main_rnn(filename, frames, batch_size, num_classes, input_length):
         filename, frames, num_classes, input_length, False)
    
     # Get sizes.
-    print "Y train :- ", y_train[0]
+    print("Y train :- ", y_train[0])
     num_classes = len(y_train[0])
 
     # Get our network.
@@ -37,7 +37,7 @@ def main_rnn(filename, frames, batch_size, num_classes, input_length):
     answer.sort()
     f = open("results_demo/results.txt", "wb")
     for x in answer:
-        print x[0], x[1]
+        print(x[0], x[1])
     	f.write(str(x[0])+" "+str(x[1])+"\n")
 
     print("Evaluation of model:", model.evaluate(X_train, y_train))
