@@ -1,4 +1,4 @@
-import label_image 
+from preprocessing import label_image 
 import numpy as np
 import pickle 
 import tensorflow as tf
