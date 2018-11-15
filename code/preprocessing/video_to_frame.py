@@ -2,7 +2,7 @@ import cv2
 import os
 import pickle
 from os.path import join, exists
-import segment_hand as hs
+from preprocessing import segment_hand as hs
 
 from random import shuffle
 
@@ -57,7 +57,7 @@ def split_test_train(datadir):
                 shutil.move(from_dir, to_dir)
 
 
-def convert_to_frames(dataset,word_count):
+def convert_to_frames(dataset,word_count,input_type,output_pickle_name):
     """
     Takes Raw training dataset and converts them from video to pictures taken at 200 frames 
     """
@@ -66,7 +66,8 @@ def convert_to_frames(dataset,word_count):
 
     # Create folder to store frames for all words 
     rootPath = os.getcwd()
-    image_data = os.path.join(os.getcwd(), "image_data")
+    # need to change image data for different conversions 
+    image_data = os.path.join(os.getcwd(), "preprocessing/image_data_test")
     if (not exists(image_data)):
         os.makedirs(image_data)
 
@@ -90,14 +91,14 @@ def convert_to_frames(dataset,word_count):
         frames = os.path.join(image_data, gesture)
         if(not os.path.exists(frames)):
             os.makedirs(frames)
-
-        videos = mylistdir(os.getcwd() + "/train/")
-        videos = [video for video in videos if(os.path.isfile(os.getcwd() + "/train/" + video))]
+	
+        videos = mylistdir(os.getcwd() + input_type)
+        videos = [video for video in videos if(os.path.isfile(os.getcwd() + input_type + video))]
 
         for video in videos:
-            name = os.getcwd() + "/train/" + video
+            name = os.getcwd() + input_type + video
             frame_count = frame_count + 1
-            print(frame_count, " : ", name)
+            print(str(frame_count) +  " : " +  str(name))
 
             # capturing input video
             cap = cv2.VideoCapture(name)  
@@ -143,12 +144,11 @@ def convert_to_frames(dataset,word_count):
     print(pickle_file)
 
     os.chdir(rootPath)
-    with open('pickle_data/labeled-frames-2.pkl', 'wb') as handle:
+    with open(output_pickle_name, 'wb') as handle:
         pickle.dump(pickle_file, handle, protocol=2)
 
 if __name__ == '__main__':
     #split_test_train("raw_data/")
-    word_count = 10
-    convert_to_frames("raw_data/",word_count)
+    convert_to_frames("preprocessing/raw_data/",10,"/train/")
 
-
+  

@@ -21,7 +21,7 @@ def predict_on_frames(frames):
         filename = frame[0]
         label = frame[1]
         frameCount = frame[2]
-        
+
 	if(count%200 == 0):
 		print(count)
         
@@ -40,12 +40,12 @@ def takespread(sequence, num):
     for i in range(num):
         yield sequence[int(ceil(i * length / num))]
 
-def main():
+def main(input_file_name,output_file_name,video_length):
     """
     Reads in the labelled frames and saves output from CNN model in pickle file
     """
-    length_of_video = 15
-    with open('preprocessing/pickle_data/labeled-frames-2' + '.pkl', 'rb') as fin:
+    length_of_video = video_length
+    with open(input_file_name + '.pkl', 'rb') as fin:
         frames = pickle.load(fin)
 
     sorted_frames = list(list(x[1]) for x in itertools.groupby(frames, operator.itemgetter(1)))
@@ -68,9 +68,9 @@ def main():
     print("size:", len(new_frames))
     predictions = predict_on_frames(new_frames)
 
-    with open('predicted-frames-2' + '.pkl', 'wb') as fout:
+    with open(output_file_name + '.pkl', 'wb') as fout:
         pickle.dump(predictions, fout)
 
 if __name__ == "__main__":
-    main()
+    main("preprocessing/pickle_data/labeled-frames-2","results/predicted-frames-train-demo.pkl",200)
 
