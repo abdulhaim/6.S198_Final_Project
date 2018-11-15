@@ -22,12 +22,12 @@ def predict_on_frames(frames):
 		label = frame[1]
 		frameCount = frame[2]
 
-	if(count%200 == 0):
-		print(count)
+		if(count%200 == 0):
+			print(count)
 		
-	prediction = label_image.get_prediction(filename)
+		prediction = label_image.get_prediction(filename)
 		
-	frame_predictions.append([prediction, label, frameCount])
+		frame_predictions.append([prediction, label, frameCount])
 		count = count + 1
 
 	return frame_predictions
