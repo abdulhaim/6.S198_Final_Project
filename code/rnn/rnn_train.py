@@ -33,7 +33,7 @@ def main(filename, frames, batch_size, num_classes, input_length):
     print("Fitting Model") 
     model.fit(X_train, y_train, validation_set=(X_test, y_test),
               show_metric=True, batch_size=batch_size, snapshot_step=100,
-              n_epoch=10)
+              n_epoch=75)
 
     # Save it.
     print("Do you wanna save the model and overwrite? y or n")
@@ -42,11 +42,10 @@ def main(filename, frames, batch_size, num_classes, input_length):
         model.save('checkpoints/rnn.tflearn')
 
 if __name__ == '__main__':
-    # filename = 'data/cnn-features-frames-1.pkl'
-    # input_length = 2048
+     # input_length = 2048
     filename = 'predicted-frames-2.pkl'
     input_length = 10 #64
-    frames = 15 #201
+    frames = 15
     batch_size = 32
     num_classes = 10 #64
 

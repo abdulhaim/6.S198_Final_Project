@@ -1,0 +1,27 @@
+Requirement already satisfied (use --upgrade to upgrade): tensorflow in /home/abdulhai/.local/lib/python2.7/site-packages
+Requirement already satisfied (use --upgrade to upgrade): absl-py>=0.1.6 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): mock>=2.0.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): wheel in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): termcolor>=1.1.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): tensorboard<1.12.0,>=1.11.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): backports.weakref>=1.0rc1 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): numpy>=1.13.3 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): protobuf>=3.6.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): grpcio>=1.8.6 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): astor>=0.6.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): setuptools<=39.1.0 in /usr/lib/python2.7/site-packages (from tensorflow)
+Collecting six>=1.10.0 (from tensorflow)
+  Using cached https://files.pythonhosted.org/packages/67/4b/141a581104b1f6397bfa78ac9d43d8ad29a7ca43ea90a2d863fe3056e86a/six-1.11.0-py2.py3-none-any.whl
+Requirement already satisfied (use --upgrade to upgrade): gast>=0.2.0 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Collecting enum34>=1.1.6 (from tensorflow)
+  Using cached https://files.pythonhosted.org/packages/c5/db/e56e6b4bbac7c4a06de1c50de6fe1ef3810018ae11732a50f15f62c7d050/enum34-1.1.6-py2-none-any.whl
+Requirement already satisfied (use --upgrade to upgrade): keras-applications>=1.0.5 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): keras-preprocessing>=1.0.3 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): funcsigs>=1; python_version < "3.3" in /home/abdulhai/.local/lib/python2.7/site-packages (from mock>=2.0.0->tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): pbr>=0.11 in /home/abdulhai/.local/lib/python2.7/site-packages (from mock>=2.0.0->tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): futures>=3.1.1; python_version < "3" in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorboard<1.12.0,>=1.11.0->tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): markdown>=2.6.8 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorboard<1.12.0,>=1.11.0->tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): werkzeug>=0.11.10 in /home/abdulhai/.local/lib/python2.7/site-packages (from tensorboard<1.12.0,>=1.11.0->tensorflow)
+Requirement already satisfied (use --upgrade to upgrade): h5py in /home/abdulhai/.local/lib/python2.7/site-packages (from keras-applications>=1.0.5->tensorflow)
+Installing collected packages: six, enum34
+Successfully installed enum34-1.0.4 six-1.9.0

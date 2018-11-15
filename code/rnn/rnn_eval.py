@@ -7,14 +7,12 @@ import tflearn
 import numpy as np
 
 
-def main(filename, frames, batch_size, num_classes, input_length):
+def main_rnn(filename, frames, batch_size, num_classes, input_length):
     """From the blog post linked above."""
     # Get our data.
     X_train, y_train = get_data(
         filename, frames, num_classes, input_length, False)
-    # print X_train
-    # print y_train
-
+   
     # Get sizes.
     print "Y train :- ", y_train[0]
     num_classes = len(y_train[0])
@@ -31,28 +29,25 @@ def main(filename, frames, batch_size, num_classes, input_length):
     hc = model.predict(X_train)
     hc = [np.argmax(every) for every in hc]
     aadi = [np.argmax(every) for every in y_train]
-    print "l1 :", len(aadi)
-    print "l2 ", len(hc)
     answer = []
 
     for i in range(0, len(hc)):
-        answer.append([aadi[i], hc[i]])
+	 answer.append([aadi[i], hc[i]])
 
     answer.sort()
-    f = open("results.txt", "wb")
+    f = open("results_demo/results.txt", "wb")
     for x in answer:
         print x[0], x[1]
-        f.write(str(x[0])+" "+str(x[1])+"\n")
+    	f.write(str(x[0])+" "+str(x[1])+"\n")
 
     print("Evaluation of model:", model.evaluate(X_train, y_train))
 
 if __name__ == '__main__':
-    filename = 'predicted-frames-2.pkl'
+    filename = 'results/predicted-frames-2.pkl'
     input_length = 10 #64
-    #filename = 'data/cnn-features-frames-2.pkl'
     # input_length = 2048
     frames = 15 #201
     batch_size = 32
     num_classes = 10 #64
 
-    main(filename, frames, batch_size, num_classes, input_length)
+    main_rnn(filename, frames, batch_size, num_classes, input_length)

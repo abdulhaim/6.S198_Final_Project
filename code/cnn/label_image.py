@@ -62,6 +62,8 @@ def load_labels(label_file):
 def get_prediction(file_name):
   model_file = "/home/abdulhai/6.S198_Final_Project/code/models/retrained_graph.pb"
   label_file = "/home/abdulhai/6.S198_Final_Project/code/models/retrained_labels.txt"
+  #model_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_graph_1.pb"
+  #label_file = "/home/abdulhai/6.S198_Final_Project/code/retrained_labels_1.txt"
   input_height = 224
   input_width = 224
   input_mean = 0
