@@ -1,4 +1,4 @@
-from cnn import label_image 
+import label_image 
 import numpy as np
 import pickle 
 import tensorflow as tf
@@ -72,5 +72,5 @@ def main(input_file_name,output_file_name,video_length):
         pickle.dump(predictions, fout)
 
 if __name__ == "__main__":
-    main("preprocessing/pickle_data/labeled-frames-2","results/predicted-frames-train-demo.pkl",200)
+    main("/home/abdulhai/6.S198_Final_Project/code/preprocessing/pickle_data/labeled-frames-2","/home/abdulhai/6.S198_Final_Project/code/results/predicted-frames-train-demo.pkl",200)
 

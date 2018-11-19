@@ -1,0 +1,14 @@
+#SBATCH --partition=MIT-6.S198
+#SBATCH --reservation=cnh_ABELSON_class
+#SBATCH --gres=gpu:1
+#SBATCH --time=00:10:00                                   <This can be changed to whatever you want>
+
+. /etc/profile.d/modules.sh
+module add cuda/8.0
+module add python/3.6.0
+module add cudnn/6.0
+module add cuda/8.0
+
+#nvidia-smi
+python3 generate_cnn_output.py
+                         

@@ -2,7 +2,7 @@
 Run a holdout set of data through our trained RNN. Requires we first
 run train_rnn.py and save the weights.
 """
-from rnn_utils import get_network, get_network_deep, get_network_wide, get_data
+from rnn.rnn_utils import get_network, get_network_deep, get_network_wide, get_data
 import tflearn
 import numpy as np
 

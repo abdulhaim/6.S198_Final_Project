@@ -73,12 +73,14 @@ name_dict = {"Opaque": "001",
 
 for name, number in name_dict.items():
 	output_names = [f for f in files if (f[0:3] == number)]
+	print("Home Directory",home_directory)
+	print("Name",name)
 	for file_name in output_names: 
-		if not os.path.exists(home_directory + name):
-			os.mkdir(home_directory + name)
-
-		current_directory = home_directory + file_name
-		new_directory = home_directory + name + "/" + file_name
+		if not os.path.exists(home_directory + "/" +  name):
+			os.mkdir(home_directory + "/" + name)
+		current_directory = home_directory + "/" + file_name
+		print(current_directory)
+		new_directory = home_directory + "/" +  name + "/" + file_name
 		shutil.move(current_directory, new_directory)
 		print(name, " Moved!")
 
