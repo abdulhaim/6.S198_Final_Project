@@ -13,14 +13,22 @@ if __name__ == "__main__":
 
     # generate predicted output 
     print("Generating Predicted Output")
+<<<<<<< HEAD
     main("preprocessing/pickle_data/labeled-frames-demo","results/predicted-demo",200)
+=======
+    main("preprocessing/pickle_data/labeled-frames-demo","results/predicted-demo",15)
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
 
     # run rnn_eval
     print("Running RNN Eval")
     filename = 'results/predicted-demo.pkl'
     input_length = 10  #64
     # input_length = 2048
+<<<<<<< HEAD
     frames = 200
+=======
+    frames = 15
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
     batch_size = 32
     num_classes = 10 #64
 

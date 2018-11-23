@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/abdulhai/6.S198_Final_Project/code/checkpoints/rnn.tflearn"
+all_model_checkpoint_paths: "/home/abdulhai/6.S198_Final_Project/code/checkpoints/rnn.tflearn"

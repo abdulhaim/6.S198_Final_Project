@@ -50,7 +50,11 @@ def get_data(filename, num_frames, num_classes, input_length, ifTrain):
                 temp_list.append(features)
                 continue
     for key in labels:
+<<<<<<< HEAD
         print(key, labels[key])
+=======
+        print key, labels[key]
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
 
     print("Total dataset size: %d" % len(X))
 
@@ -61,8 +65,13 @@ def get_data(filename, num_frames, num_classes, input_length, ifTrain):
     # Reshape.
     X = X.reshape(-1, num_frames, input_length)
     num_classes = len(labels)
+<<<<<<< HEAD
     print(num_classes)
     print(labels)
+=======
+    print num_classes
+    print labels
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
 
     # One-hot encoded categoricals.
     y = to_categorical(y, num_classes)

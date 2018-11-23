@@ -38,13 +38,20 @@ def split_test_train(datadir):
             training = data_files[:split_index]
             testing = data_files[split_index:]
 
+<<<<<<< HEAD
 	    train_dir = file_direc + "train/"
             test_dir = file_direc + "test/"
 	    
+=======
+            train_dir = main_dir + "/train/"
+            test_dir = main_dir + "/test/"
+
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
             if(not os.path.exists(train_dir)):
                 os.makedirs(train_dir)
             if(not os.path.exists(test_dir)):
                 os.makedirs(test_dir)
+<<<<<<< HEAD
 	    
 	    word_index = main_dir.rindex("/")
             print(word_name[word_index:])
@@ -57,6 +64,18 @@ def split_test_train(datadir):
                 from_dir = main_dir + "/" + file
                 #to_dir =  test_dir + file
                 #shutil.move(from_dir, to_dir)
+=======
+
+            for file in training:
+                from_dir = main_dir + "/" + file
+                to_dir =  train_dir + file
+                shutil.move(from_dir, to_dir)
+
+            for file in testing:
+                from_dir = main_dir + "/" + file
+                to_dir =  test_dir + file
+                shutil.move(from_dir, to_dir)
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
 
 
 def convert_to_frames(dataset,word_count,input_type,output_pickle_name):

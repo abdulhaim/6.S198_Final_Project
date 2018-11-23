@@ -12,6 +12,10 @@ module add cudnn/6.0
 module add cuda/8.0
 
 #nvidia-smi
+<<<<<<< HEAD
 #python3 cnn/generate_cnn_output.py
 python3 preprocessing/video_to_frame.py
 #python3 run_demo.py
+=======
+python3 run_demo.py
+>>>>>>> 051fc68671c68167707412674126ed3d8005017c
