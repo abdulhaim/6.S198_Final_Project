@@ -86,8 +86,6 @@ def sort_files(data_dir):
 
     for name, number in name_dict.items():
         output_names = [f for f in files if (f[0:3] == number)]
-        print("Home Directory",home_directory)
-        print("Name",name)
         for file_name in output_names: 
             if not os.path.exists(home_directory + "/" +  name):
                 os.mkdir(home_directory + "/" + name)
@@ -168,7 +166,7 @@ def convert_to_frames(dataset,word_count,input_type,output_pickle_name):
     # Create folder to store frames for all words 
     rootPath = os.getcwd()
     # need to change image data for different conversions 
-    image_data = os.path.join(os.getcwd(), "preprocessing/image_data_test")
+    image_data = os.path.join(os.getcwd(), "preprocessing/image_data_" + input_type)
     if (not exists(image_data)):
         os.makedirs(image_data)
 
@@ -193,11 +191,12 @@ def convert_to_frames(dataset,word_count,input_type,output_pickle_name):
         if(not os.path.exists(frames)):
             os.makedirs(frames)
 	
-        videos = mylistdir(os.getcwd() + input_type)
-        videos = [video for video in videos if(os.path.isfile(os.getcwd() + input_type + video))]
+        videos = mylistdir(os.getcwd())
+        print(os.getcwd())
 
+        videos = [video for video in videos if(os.path.isfile(os.getcwd() + '/' +  video))]
         for video in videos:
-            name = os.getcwd() + input_type + video
+            name = os.getcwd() + '/' +  video
             frame_count = frame_count + 1
             print(str(frame_count) +  " : " +  str(name))
 
@@ -254,6 +253,6 @@ if __name__ == '__main__':
 
     split_dir = "/preprocessing/"
     split_test_train(split_dir)
-    convert_to_frames("preprocessing/raw_data/",10,"/train/")
+    convert_to_frames("preprocessing/train/",10,"train","pickle_train.pkl")
 
   
