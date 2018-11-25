@@ -248,11 +248,11 @@ def convert_to_frames(dataset,word_count,input_type,output_pickle_name):
         pickle.dump(pickle_file, handle, protocol=2)
 
 if __name__ == '__main__':
-    sort_dir = "/preprocessing/all/"
-    sort_files(sort_dir)
+    #sort_dir = "/preprocessing/all/"
+    #sort_files(sort_dir)
 
-    split_dir = "/preprocessing/"
-    split_test_train(split_dir)
+    #split_dir = "/preprocessing/"
+    #split_test_train(split_dir)
     convert_to_frames("preprocessing/train/",10,"train","pickle_train.pkl")
 
   
