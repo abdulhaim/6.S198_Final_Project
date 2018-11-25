@@ -24,13 +24,11 @@ To install the dependencies for this project, run the following commands:
 ## Pipeline
 
 In order to run this module, please clone the repository and perform the following
-1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M) and place into newly created folder called "test" in the project's code directory.
+1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M). Place the unzipped file 'all' inside of a new directory 'preprocessing'.
 
-2. Run ``python sort_files.py``. This will arrange all of the raw data into folders corresponding to each word category. Please change the appropriate paths in the file. 
+3. Run ``python preprocessing.py``. This will arrange all of the raw data into folders corresponding to each word category, split your dataset into a training and a test set (70:30 ratio), and capture 200 frames for each raw video in the training set as images and store them in the appropriate folder. Note that can you can specify how many words to include in your training set.
 
-3. Run ``python video_to_frame.py``. This will split your dataset into a training and a test set (70:30 ratio), and capture 200 frames for each rraw video in the training set as images and store them in the appropriate folder. Note that can you can specify how many words to include in your training set.
-
-4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Mobilenet model. Download ``retrain.py`` [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
+4. We will now apply Transfer Learning to add these new categories of Sign Language words to the pretrained Inception model. Download ``retrain.py`` [here](https://raw.githubusercontent.com/tensorflow/hub/r0.1/examples/image_retraining/retrain.py) and store in the "code" directory. Note: This link may change in the future. 
 
 Run the following command:
 
