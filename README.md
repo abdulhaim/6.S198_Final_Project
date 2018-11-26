@@ -36,5 +36,5 @@ Run the following command:
 
 5. We will now run a command that will create a pickle file to feed into the LSTM model that includes the accuracy values for reach word in a matrix. 
 
-`` nohup python cnn/make_predictions.py & ``
+`` nohup python cnn/generate_cnn_output.py & ``
 
