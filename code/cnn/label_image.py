@@ -22,8 +22,8 @@ def load_graph(model_file):
 
 
 def read_tensor_from_image_file(file_name,
-                                input_height=299,
-                                input_width=299,
+                                input_height=224,
+                                input_width=224,
                                 input_mean=0,
                                 input_std=255):
   input_name = "file_reader"
@@ -88,7 +88,7 @@ def get_prediction(file_name):
     results = sess.run(output_operation.outputs[0], {
         input_operation.outputs[0]: t
     })
-  
+  sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
   results = np.squeeze(results)
 
   top_k = results.argsort()[-5:][::-1]

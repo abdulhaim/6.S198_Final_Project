@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import label_image 
-=======
-from cnn import label_image 
->>>>>>> 051fc68671c68167707412674126ed3d8005017c
 import numpy as np
 import pickle 
 import tensorflow as tf
@@ -21,7 +17,8 @@ def predict_on_frames(frames):
     frame_predictions = []
     print("Total Number of Frames ",len(frames))
     count = 0
-    for i, frame in tqdm(enumerate(frames)):
+    #for i, frame in tqdm(enumerate(frames)):
+    for frame in tqdm(frames):
         filename = frame[0]
         label = frame[1]
         frameCount = frame[2]
@@ -66,8 +63,8 @@ def main(input_file_name,output_file_name,video_length):
     new_frames = []
 
     for key in final_dict:
-        elements = takespread(final_dict[key],length_of_video)
-        new_frames.extend(elements)
+        #elements = takespread(final_dict[key],length_of_video)
+        new_frames.extend(final_dict[key])
 
     print("size:", len(new_frames))
     predictions = predict_on_frames(new_frames)
@@ -76,9 +73,6 @@ def main(input_file_name,output_file_name,video_length):
         pickle.dump(predictions, fout)
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    main("/home/abdulhai/6.S198_Final_Project/code/preprocessing/pickle_data/labeled-frames-2","/home/abdulhai/6.S198_Final_Project/code/results/predicted-frames-train-demo.pkl",200)
-=======
-    main("preprocessing/pickle_data/labeled-frames-2","results/predicted-frames-train-demo.pkl",200)
->>>>>>> 051fc68671c68167707412674126ed3d8005017c
+	main("/home/abdulhai/6.S198_Final_Project/code/pickle_data/pickle_train","/home/abdulhai/6.S198_Final_Project/code/results/predicted-frames-train.pkl",200)
+
 
