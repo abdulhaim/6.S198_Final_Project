@@ -55,13 +55,16 @@ def determine_sign():
         os.makedirs(direct_name)
 
     downloads_dir = "/Users/Marwa/Downloads/"
+
     predicted_word = run_pipeline(downloads_dir + "RecordedVideo.webm",direct_name ,model_file, label_file, input_height, input_width, input_mean, input_std, input_layer, output_layer, graph, input_name, output_name, input_operation, output_operation, sample_size)
 
+    if os.path.exists(downloads_dir + "RecordedVideo.webm"):
+        os.remove(downloads_dir + "RecordedVideo.webm")
     #remove segmented frames from directory in case you're 
     #running multiple videos sequentially 
 
-    shutil.rmtree(direct_name)
-    os.mkdir(direct_name)
+    # shutil.rmtree(direct_name)
+    # os.mkdir(direct_name)
 
     return json.dumps({"word":predicted_word})
 
