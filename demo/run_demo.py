@@ -7,8 +7,8 @@ import sys
 import time
 
 from scripts.label_image import *
-from video_to_frame import *
-from mode_accuracy import *
+from pipeline.video_to_frame import *
+from pipeline.mode_accuracy import *
 
 import os
 from flask import Flask, render_template, Response,request
