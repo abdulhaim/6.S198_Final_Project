@@ -30,7 +30,7 @@ In order to run the demo and try out any of the 64 signs from the Argentinian [d
 
 You will be directed to the  link ``http://127.0.0.1:5000/`` where you can record a video from your webcam, and have translated output on the screen. 
 
-![alt text](images/demo_image.PNG)
+![alt text](images/demo_image.png)
 
 ## Run Pipeline
 
