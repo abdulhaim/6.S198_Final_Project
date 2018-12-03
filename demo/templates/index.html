@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+        <style type="text/css">
+
+        body {
+          font: 14px "Open Sans", "courier", sans-serif;
+        }
+
+        video {
+          margin-top: 2px;
+          border: 1px solid black;
+        }
+
+        .button {
+          cursor: pointer;
+          display: block;
+          width: 160px;
+          border: 1px solid black;
+          font-size: 16px;
+          text-align: center;
+          margin-top: 10px;
+
+          padding-top: 2px;
+          padding-bottom: 4px;
+          color: white;
+          background-color: darkgreen;
+          text-decoration: none;
+        }
+
+        h2 {
+          margin-bottom: 10px;
+          font-family: courier;
+
+        }
+
+        h1 {
+          font-family: courier;
+          }
+
+        .left {
+          margin-right: 40px;
+          float: left;
+          width: 160px;
+          padding: 0px;
+        }
+
+        .right {
+          margin-left: 300px;
+          float: left;
+          width: 160px;
+          padding: 0px;
+        }
+
+        .bottom {
+          clear: both;
+          padding-top: 30px;
+        }
+        </style>
+
+    </head>
+
+    <h1> Sign Language Interpreter </h1>
+
+    <body>
+
+      <p>Click the "Start" button to begin video recording for a few seconds. You can stop
+      the video by clicking the creatively-named "Stop" button. The next button will send your video file to be converted to text. </p>
+      
+      <br>
+
+     <div class="left">
+        <div id="startButton" class="button"> Start </div>
+        <h2>Preview</h2>
+        <video id="preview" width="400" height="300" autoplay muted></video>
+    </div>
+
+    <div class="right"> 
+        <div id="stopButton" class="button"> Stop </div>
+
+        <h2>Recording</h2>
+
+        <video id="recording" width="400" height="300" controls></video>
+
+        <a id="downloadButton" onclick="runDemo()" class="button"> Translate  </a> 
+    </div>
+
+    <div class="bottom">  <pre id="log"></pre> </div>
+
+
+    <script>
+
+        let preview = document.getElementById("preview");
+        let recording = document.getElementById("recording");
+        let startButton = document.getElementById("startButton");
+        let stopButton = document.getElementById("stopButton");
+        let downloadButton = document.getElementById("downloadButton");
+        let logElement = document.getElementById("log");
+
+        let recordingTimeMS = 5000;
+         function log(msg) {
+          logElement.innerHTML += msg + "\n";
+        }
+         function wait(delayInMS) {
+          return new Promise(resolve => setTimeout(resolve, delayInMS));
+        }
+         function startRecording(stream, lengthInMS) {
+          let recorder = new MediaRecorder(stream);
+          let data = [];
+
+          recorder.ondataavailable = event => data.push(event.data);
+          recorder.start();
+          log(recorder.state + " for " + (lengthInMS/1000) + " seconds...");
+             recorder.addEventListener('dataavailable', function(event) { 
+            console.log(recorder.state); 
+            w3simulateClick(stopButton, 'click');
+            });
+          let stopped = new Promise((resolve, reject) => {
+            recorder.onstop = resolve;
+            recorder.onerror = event => reject(event.name);
+          });
+
+          let recorded = wait(lengthInMS).then(
+            () => recorder.state == "recording" && recorder.stop()
+          )
+
+          return Promise.all([
+            stopped,
+            recorded
+          ])
+          .then(() => data);
+        }
+         function stop(stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+         startButton.addEventListener("click", function() {
+          navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+          }).then(stream => {
+            preview.srcObject = stream;
+            downloadButton.href = stream;
+            preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+            return new Promise(resolve => preview.onplaying = resolve);
+          }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+          .then (recordedChunks => {
+            let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
+            recording.src = URL.createObjectURL(recordedBlob);
+            downloadButton.href = recording.src;
+            downloadButton.download = "RecordedVideo.webm";
+
+
+            log("Successfully recorded " + recordedBlob.size + " bytes of " +
+                recordedBlob.type + " media.");
+
+
+          })
+          .catch(log);
+        }, false); stopButton.addEventListener("click", function() {
+          stop(preview.srcObject);
+        }, false);
+
+        function w3simulateClick(el) {
+          var event = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+          });
+
+
+        }
+        function runDemo(){
+          $.get("http://127.0.0.1:5000/run_demo", function(output) {
+            var word = JSON.parse(output)["word"]
+            var speech = "Your word is " + word
+            var msg = new SpeechSynthesisUtterance(speech);
+            window.speechSynthesis.speak(msg);
+            window.close();
+            alert(speech);
+            });
+        }
+
+    </script>
+
+
+  </body>
+
+</html>
