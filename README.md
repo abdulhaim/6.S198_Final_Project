@@ -21,7 +21,18 @@ To install the dependencies for this project, run the following commands:
 
 ``pip install numpy``
 
-## Pipeline
+
+## Run Demo
+
+In order to run the demo and try out any of the 64 signs from the Argentinian [dataset](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M), clone the repository and inside the demo folder, run the following:
+
+``FLASK_APP=run_demo.py flask run``
+
+You will be directed to the  link ``http://127.0.0.1:5000/`` where you can record a video from your webcam, and have translated output on the screen. 
+
+![alt text](images/demo_image.PNG)
+
+## Run Pipeline
 
 In order to run this module, please clone the repository and perform the following
 1. Download the Raw Data of the LSA64: A Dataset for Argentinian Sign Language [here](https://mega.nz/#!kJBDxLSL!zamibF1KPtgQFHn3RM0L1WBuhcBUvo0N0Uec9hczK_M). Place the unzipped file 'all' inside of a new directory 'preprocessing'.
