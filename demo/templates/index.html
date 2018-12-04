@@ -78,6 +78,9 @@
     </div>
 
     <div class="right"> 
+
+        <a id="uploadButton" onclick="sample_video()" class="button"> Upload  </a> 
+
         <div id="stopButton" class="button"> Stop </div>
 
         <h2>Recording</h2>
@@ -97,6 +100,7 @@
         let startButton = document.getElementById("startButton");
         let stopButton = document.getElementById("stopButton");
         let downloadButton = document.getElementById("downloadButton");
+        let uploadButton = document.getElementById("uploadButton");
         let logElement = document.getElementById("log");
 
         let recordingTimeMS = 5000;
@@ -173,6 +177,17 @@
         }
         function runDemo(){
           $.get("http://127.0.0.1:5000/run_demo", function(output) {
+            var word = JSON.parse(output)["word"]
+            var speech = "Your word is " + word
+            var msg = new SpeechSynthesisUtterance(speech);
+            window.speechSynthesis.speak(msg);
+            window.close();
+            alert(speech);
+            });
+        }
+
+        function sample_video(){
+          $.get("http://127.0.0.1:5000/sample_video", function(output) {
             var word = JSON.parse(output)["word"]
             var speech = "Your word is " + word
             var msg = new SpeechSynthesisUtterance(speech);
